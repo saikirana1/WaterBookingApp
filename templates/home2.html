@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aquatech - Home</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #F5F5DC; /* Light merino background */
+        }
+        .navbar {
+            background: linear-gradient(to right, #003366, #0066cc);
+        }
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 24px;
+        }
+        .marquee-container {
+            background-color: #ffcc00;
+            padding: 8px;
+            color: #000;
+            font-weight: bold;
+            overflow: hidden;
+            white-space: nowrap;
+        }
+        .marquee-text {
+            display: inline-block;
+            animation: marquee 40s linear infinite;
+        }
+        @keyframes marquee {
+            from { transform: translateX(100%); }
+            to { transform: translateX(-100%); }
+        }
+        .about {
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .footer {
+            background-color: #003366;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        .footer a {
+            color: #ffcc00;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark shadow">
+        <div class="container">
+            <a class="navbar-brand" href="#">Aquatech</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'waterbook:about_us' %}">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="{% url 'waterbook:contact_us' %}">Contact</a></li>
+                    <li class="nav-item"><a class="btn btn-warning" href="{% url 'waterbook:login' %}">Login</a></li>
+                    
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Marquee -->
+    <div class="marquee-container">
+        <span class="marquee-text"> Welcome to Aquatech - Innovating Water Solutions for a Better Tomorrow </span>
+    </div>
+
+    <!-- About Us -->
+    <section class="about">
+        <div class="container">
+            <h2>About Us</h2>
+            <p>Aquatech is a leading provider of innovative water management solutions. Our mission is to ensure clean, safe, and sustainable water solutions for homes, businesses, and industries.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Aquatech. All rights reserved.</p>
+            <p><a href="#">Contact Us</a> | <a href="#">About Us</a></p>
+        </div>
+    </footer>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

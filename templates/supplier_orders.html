@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Water Booking Orders</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            background: linear-gradient(to right, #f8f9fa, #e3f2fd);
+            font-family: 'Poppins', sans-serif;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
+            margin-top: 40px;
+        }
+        h2 {
+            color: #007BFF;
+            font-weight: 600;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        table {
+            width: 100%;
+        }
+        th {
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+        }
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #dee2e6;
+        }
+        tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        .btn-update {
+            background-color: #28a745;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .btn-update:hover {
+            background-color: #218838;
+        }
+        .delivered {
+            color: #28a745;
+            font-weight: bold;
+        }
+        .back-btn {
+            display: inline-block;
+            margin-bottom: 15px;
+            padding: 10px 16px;
+            background-color: #17a2b8;
+            color: white;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .back-btn:hover {
+            background-color: #138496;
+        }
+        .no-data {
+            text-align: center;
+            font-style: italic;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>📦 All Water Booking Orders</h2>
+
+        <!-- Supplier Home Button -->
+        <a href="{% url 'waterbook:supplier_home' %}" class="back-btn">🏠 Supplier Home</a>
+
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Booking ID</th>
+                        <th>Name</th>
+                        <th>Address</th>
+                        <th>Phone Number</th>
+                        <th>Number of Tins</th>
+                        <th>Payment Method</th>
+                        <th>Delivery Status</th>
+                        <th>Booking Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for booking in bookings %}
+                    <tr>
+                        <td>{{ booking.id }}</td>
+                        <td>{{ booking.name }}</td>
+                        <td>{{ booking.address }}</td>
+                        <td>{{ booking.phone_number }}</td>
+                        <td>{{ booking.number_of_tins }}</td>
+                        <td>{{ booking.get_payment_method_display }}</td>
+                        <td>{{ booking.get_delivery_status_display }}</td>
+                        <td>{{ booking.date }}</td>
+                        <td>
+                            {% if booking.delivery_status != 'delivered' %}
+                            <a href="{% url 'waterbook:update_delivery_status' booking.id %}" class="btn-update">Update Status</a>
+                            {% else %}
+                            <span class="delivered">✅ Delivered</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                    {% empty %}
+                    <tr>
+                        <td colspan="9" class="no-data">No bookings available.</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+
+</body>
+</html>

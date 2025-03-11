@@ -1,0 +1,15 @@
+# Python-related
+__pycache__/
+*.pyc
+*.pyo
+
+# Django-related
+db.sqlite3
+media/
+
+# Environment variables
+.env
+
+# Static and migrations
+/static/
+/migrations/
